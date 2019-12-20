@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(MaterialApp(
-    theme: ThemeData.dark().copyWith(
-      scaffoldBackgroundColor: Colors.blue,
-    ),
     debugShowCheckedModeBanner: false,
     home: ListData(),
   ));
@@ -49,15 +46,15 @@ var tambah = <Container>[];
                 SizedBox(width: 18),
               ],
             ),
-          floatingActionButton: FloatingActionButton(
-            heroTag: 'add',
-            onPressed: () {
-              setState(() {
-                _klik();
-              });
-            },
-            child: Icon(Icons.add),
-          ),
+//           floatingActionButton: FloatingActionButton(
+//             heroTag: 'add',
+//             onPressed: () {
+//               setState(() {
+//                 _klik();
+//               });
+//             },
+//             child: Icon(Icons.add),
+//           ),
             body: _tes()));             
     
   }
@@ -83,6 +80,7 @@ var tambah = <Container>[];
           _divider,
         Column(
       children: tambah.map((coba){
+        final index = tambah.indexOf(coba);
         return Column(
           children: <Widget>[
           Container(
@@ -94,10 +92,20 @@ var tambah = <Container>[];
                           color: Colors.grey[400]),
                       decoration: InputDecoration(
                         border: InputBorder.none,
-                        hintText: 'Work Phone',
+                        labelText: 'Work Phone',
                         hintStyle: TextStyle(color: Colors.blue),
                       ),
-                    )
+                    ),
+              trailing: InkWell(
+              child: Icon(Icons.cancel),
+                onTap: (){
+                  setState((){                    
+                  tambah.removeAt(index);
+                  print(index);
+                  });
+                  
+                },
+                )
             ),
           ),
           _divider,]);
